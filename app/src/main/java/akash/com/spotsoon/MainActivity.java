@@ -1,8 +1,10 @@
 package akash.com.spotsoon;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -16,12 +18,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.daimajia.slider.library.Tricks.ViewPagerEx;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -188,8 +192,12 @@ public class MainActivity extends AppCompatActivity
 
 
 
+
     void showImages() {
 
+
+        album_name.setText("Closer");
+        singer.setText("Chain smoker new album");
             for (final String url : url_maps.keySet()){
                 textSliderView = new TextSliderView(MainActivity.this);
                 textSliderView.image(url_maps.get(url));
@@ -208,7 +216,7 @@ public class MainActivity extends AppCompatActivity
                         }else if (url.equals("Hannibal2")){
 //                            Toast.makeText(MainActivity.this,"clicked 2",Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(MainActivity.this, Main2Activity.class);
-                            intent.putExtra("url","android.resource://akash.com.spotsoon/"+ R.raw.video);
+                            intent.putExtra("url","android.resource://akash.com.spotsoon/"+ R.raw.closers);
                             startActivity(intent);
                         }
 //                Toast.makeText(MainActivity.this,"clicked",Toast.LENGTH_LONG).show();
