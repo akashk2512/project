@@ -1,5 +1,6 @@
 package akash.com.spotsoon;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -189,11 +190,31 @@ public class MainActivity extends AppCompatActivity
 
     void showImages() {
 
-            for (String url : url_maps.keySet()){
+            for (final String url : url_maps.keySet()){
                 textSliderView = new TextSliderView(MainActivity.this);
                 textSliderView.image(url_maps.get(url));
                 sliderLayout.stopAutoCycle();
                 sliderLayout.addSlider(textSliderView);
+
+                textSliderView.setOnSliderClickListener(new BaseSliderView.OnSliderClickListener() {
+                    @Override
+                    public void onSliderClick(BaseSliderView slider) {
+
+                        if (url.equals("Hannibal")){
+//                            Toast.makeText(MainActivity.this,"clicked 1",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                            intent.putExtra("url","android.resource://akash.com.spotsoon/"+ R.raw.videos);
+                            startActivity(intent);
+                        }else if (url.equals("Hannibal2")){
+//                            Toast.makeText(MainActivity.this,"clicked 2",Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                            intent.putExtra("url","android.resource://akash.com.spotsoon/"+ R.raw.video);
+                            startActivity(intent);
+                        }
+//                Toast.makeText(MainActivity.this,"clicked",Toast.LENGTH_LONG).show();
+
+                    }
+                });
             }
     }
 }
